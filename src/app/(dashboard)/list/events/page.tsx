@@ -52,13 +52,13 @@ const EventListPage = () => {
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-PurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.title}</td>
-      <td>{item.class}</td>
-      <td className="hidden md:table-cell">{item.date}</td>
-      <td className="hidden md:table-cell">{item.startTime}</td>
-      <td className="hidden md:table-cell">{item.endTime}</td>
+      <td className="flex items-center gap-4 p-4 justify-center">{item.title}</td>
+      <td className="text-center">{item.class}</td>
+      <td className="hidden md:table-cell text-center">{item.date}</td>
+      <td className="hidden md:table-cell text-center">{item.startTime}</td>
+      <td className="hidden md:table-cell text-center">{item.endTime}</td>
       <td>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4 justify-center">
           {role === "admin" && (
             <>
               <FormModal table="event" type="update" data={item} />
@@ -72,7 +72,6 @@ const EventListPage = () => {
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">All Events</h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
@@ -88,9 +87,8 @@ const EventListPage = () => {
           </div>
         </div>
       </div>
-      {/* LIST */}
       <Table columns={columns} renderRow={renderRow} data={eventsData} />
-      {/* PAGINATION */}
+
       <Pagination />
     </div>
   );

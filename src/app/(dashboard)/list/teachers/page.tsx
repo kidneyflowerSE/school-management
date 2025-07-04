@@ -74,14 +74,14 @@ const Page = () => {
           <p className="text-xs text-gray-500">{item?.email}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.teacherId}</td>
-      <td className="hidden md:table-cell">{item.subjects.join(",")}</td>
-      <td className="hidden md:table-cell">{item.classes.join(",")}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      <td className="hidden md:table-cell">{item.address}</td>
+      <td className="hidden md:table-cell text-center">{item.teacherId}</td>
+      <td className="hidden md:table-cell text-center">{item.subjects.join(",")}</td>
+      <td className="hidden md:table-cell text-center">{item.classes.join(",")}</td>
+      <td className="hidden md:table-cell text-center">{item.phone}</td>
+      <td className="hidden md:table-cell text-center">{item.address}</td>
       <td>
-        <div>
-          <Link href={`/list/teacher/${item.id}`} className="">
+        <div className="flex justify-center gap-4 items-center">
+          <Link href={`/list/teachers/${item.id}`} className="">
             <button className="w-7 h-7 flex items-center justify-center rounded-full bg-Sky">
               <Image
                 src="/view.png"
@@ -92,7 +92,7 @@ const Page = () => {
               />
             </button>
           </Link>
-          {role === "admin" && (
+          {(role === "admin") && (
             <FormModal table="teacher" type="delete" id={item.id} />
           )}
         </div>
@@ -112,7 +112,7 @@ const Page = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-Yellow">
               <Image src="/sort.png" alt="Filter" width={14} height={14} />
             </button>
-            {role === "admin" && <FormModal table="teacher" type="create" />}
+            {(role === "admin") && <FormModal table="teacher" type="create" />}
           </div>
         </div>
       </div>

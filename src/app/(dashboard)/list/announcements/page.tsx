@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
@@ -7,11 +7,11 @@ import { announcementsData, role } from "@/lib/data";
 import Image from "next/image";
 
 type Announcement = {
-    id:number;
-    title: string;
-    class: string;
-    date: string;
-}
+  id: number;
+  title: string;
+  class: string;
+  date: string;
+};
 
 const columns = [
   {
@@ -33,19 +33,19 @@ const columns = [
   },
 ];
 
-
 const AnnouncementPage = () => {
-
-     const renderRow = (item: Announcement) => (
+  const renderRow = (item: Announcement) => (
     <tr
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-PurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.title}</td>
-      <td>{item.class}</td>
-      <td className="hidden md:table-cell">{item.date}</td>
+      <td className="flex items-center gap-4 p-4 justify-center">
+        {item.title}
+      </td>
+      <td className="text-center">{item.class}</td>
+      <td className="hidden md:table-cell text-center">{item.date}</td>
       <td>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-4">
           {role === "admin" && (
             <>
               <FormModal table="announcement" type="update" data={item} />
@@ -59,7 +59,6 @@ const AnnouncementPage = () => {
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">
           All Announcements
@@ -75,17 +74,16 @@ const AnnouncementPage = () => {
             </button>
             {role === "admin" && (
               <FormModal table="announcement" type="create" />
-          
             )}
           </div>
         </div>
       </div>
-      {/* LIST */}
+
       <Table columns={columns} renderRow={renderRow} data={announcementsData} />
-      {/* PAGINATION */}
+
       <Pagination />
     </div>
-  )
-}
+  );
+};
 
-export default AnnouncementPage
+export default AnnouncementPage;

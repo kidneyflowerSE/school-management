@@ -47,13 +47,13 @@ const Page = () => {
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-PurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.name}</td>
-      <td className="hidden md:table-cell">{item.capacity}</td>
-      <td className="hidden md:table-cell">{item.grade}</td>
-      <td className="hidden md:table-cell">{item.supervisor}</td>
+      <td className="flex items-center gap-4 p-4 justify-center">{item.name}</td>
+      <td className="hidden md:table-cell text-center">{item.capacity}</td>
+      <td className="hidden md:table-cell text-center">{item.grade}</td>
+      <td className="hidden md:table-cell text-center">{item.supervisor}</td>
       <td>
-        <div className="flex items-center gap-2">
-          {role === "admin" && (
+        <div className="flex items-center justify-center gap-4">
+          {(role === "admin") && (
             <>
               <FormModal table="class" type="update" data={item} />
               <FormModal table="class" type="delete" id={item.id} />
@@ -77,7 +77,7 @@ const Page = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-Yellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-             {role === "admin" && <FormModal table="class" type="create" />}
+             {(role === "admin") && <FormModal table="class" type="create" />}
           </div>
         </div>
       </div>
