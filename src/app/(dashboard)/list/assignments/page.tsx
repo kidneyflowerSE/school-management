@@ -1,13 +1,10 @@
-"use client"
+"use client";
 
 import FormModal from "@/components/FormModal";
 import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import TableSearch from "@/components/TableSearch";
-import {
-  assignmentsData,
-  role,
-} from "@/lib/data";
+import { assignmentsData, role } from "@/lib/data";
 import Image from "next/image";
 
 type Assignment = {
@@ -49,13 +46,15 @@ const AssignmentListPage = () => {
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-PurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.subject}</td>
-      <td>{item.class}</td>
-      <td className="hidden md:table-cell">{item.teacher}</td>
-      <td className="hidden md:table-cell">{item.dueDate}</td>
+      <td className="flex items-center gap-4 p-4 justify-center">
+        {item.subject}
+      </td>
+      <td className="text-center">{item.class}</td>
+      <td className="hidden md:table-cell text-center">{item.teacher}</td>
+      <td className="hidden md:table-cell text-center">{item.dueDate}</td>
       <td>
-        <div className="flex items-center gap-2">
-          {role === "admin" || role === "teacher" && (
+        <div className="flex items-center gap-4 justify-center">
+          {(role === "admin" || role === "teacher") && (
             <>
               <FormModal table="assignment" type="update" data={item} />
               <FormModal table="assignment" type="delete" id={item.id} />
@@ -68,7 +67,6 @@ const AssignmentListPage = () => {
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">
           All Assignments
@@ -82,16 +80,13 @@ const AssignmentListPage = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-Yellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" || role === "teacher" && (
-                <FormModal table="assignment" type="create" />
-               
-                )}
+            {(role === "admin" || role === "teacher") && (
+              <FormModal table="assignment" type="create" />
+            )}
           </div>
         </div>
       </div>
-      {/* LIST */}
       <Table columns={columns} renderRow={renderRow} data={assignmentsData} />
-      {/* PAGINATION */}
       <Pagination />
     </div>
   );

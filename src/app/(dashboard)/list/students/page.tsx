@@ -69,21 +69,19 @@ const StudentListPage = () => {
           <p className="text-xs text-gray-500">{item.class}</p>
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.studentId}</td>
-      <td className="hidden md:table-cell">{item.grade}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      <td className="hidden md:table-cell">{item.address}</td>
+      <td className="hidden md:table-cell text-center">{item.studentId}</td>
+      <td className="hidden md:table-cell text-center">{item.grade}</td>
+      <td className="hidden md:table-cell text-center">{item.phone}</td>
+      <td className="hidden md:table-cell text-center">{item.address}</td>
       <td>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-4">
           <Link href={`/list/teachers/${item.id}`}>
             <button className="w-7 h-7 flex items-center justify-center rounded-full bg-Sky">
               <Image src="/view.png" alt="" width={16} height={16} />
             </button>
           </Link>
-          {role === "admin" && (
-            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-            //   <Image src="/delete.png" alt="" width={16} height={16} />
-            // </button>
+          {(role === "admin") && (
+         
             <FormModal table="student" type="delete" id={item.id}/>
           )}
         </div>
@@ -93,7 +91,6 @@ const StudentListPage = () => {
 
   return (
     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-      {/* TOP */}
       <div className="flex items-center justify-between">
         <h1 className="hidden md:block text-lg font-semibold">All Students</h1>
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
@@ -105,7 +102,7 @@ const StudentListPage = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-Yellow">
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
-            {role === "admin" && (
+            {(role === "admin") && (
               // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
               //   <Image src="/plus.png" alt="" width={14} height={14} />
               // </button>
@@ -113,10 +110,9 @@ const StudentListPage = () => {
             )}
           </div>
         </div>
-      </div>
-      {/* LIST */}
+     </div>
       <Table columns={columns} renderRow={renderRow} data={studentsData} />
-      {/* PAGINATION */}
+
       <Pagination />
     </div>
   );
